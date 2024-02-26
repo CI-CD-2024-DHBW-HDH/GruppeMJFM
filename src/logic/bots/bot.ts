@@ -53,7 +53,7 @@ export function winningMove (board: Field[], player: Field): number {
   return -1
 }
 
-function checkLine (subBoard: Field[], player: Field): number {
+export function checkLine (subBoard: Field[], player: Field): number {
   if (
     subBoard[0] === player &&
         subBoard[1] === player &&
