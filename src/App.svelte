@@ -1,55 +1,55 @@
 <script lang="ts">
-  import Board from "./lib/Board.svelte";
-  import Scoreboard from "./lib/Scoreboard.svelte";
-  import Settings from "./lib/Settings.svelte";
-  import ThemeSelector from "./lib/ThemeSelector.svelte";
-  import { Field, Game, Mode, newBoard, Outcome } from "./logic/game";
-  import type { Theme } from "./logic/theme";
+  import Board from './lib/Board.svelte'
+  import Scoreboard from './lib/Scoreboard.svelte'
+  import Settings from './lib/Settings.svelte'
+  import ThemeSelector from './lib/ThemeSelector.svelte'
+  import { Field, Game, Mode, newBoard, Outcome } from './logic/game'
+  import type { Theme } from './logic/theme'
 
-  let board: Field[] = newBoard();
+  let board: Field[] = newBoard()
 
-  let game = new Game();
-  const playerSymbol = "❌";
-  const enemySymbol = "⭕";
+  let game = new Game()
+  const playerSymbol = '❌'
+  const enemySymbol = '⭕'
 
-  let fieldToString = (f: Field) => {
+  const fieldToString = (f: Field) => {
     switch (f) {
       case Field.EMPTY:
-        return "";
+        return ''
       case Field.PLAYER1:
-        return playerSymbol;
+        return playerSymbol
       case Field.PLAYER2:
-        return enemySymbol;
+        return enemySymbol
     }
-  };
+  }
 
-  function finished(event: CustomEvent<Outcome>) {
+  function finished (event: CustomEvent<Outcome>) {
     if (!event.detail.isDraw()) {
-      game.addWin(event.detail.winner);
-      game = game;
+      game.addWin(event.detail.winner)
+      game = game
     }
-    setTimeout(() => (board = newBoard()), 1000);
+    setTimeout(() => (board = newBoard()), 1000)
   }
 
-  function switchPlayer() {
-    board = newBoard();
-    game.switchSides();
-    game = game;
+  function switchPlayer () {
+    board = newBoard()
+    game.switchSides()
+    game = game
   }
 
-  function themeChanged({ detail }: { detail: Theme }) {
-    let elements = Object.entries(detail);
-    for (let e of elements) {
-      if (typeof e[1] === "string") {
-        document.documentElement.style.setProperty(`--${e[0]}`, `${e[1]}`);
+  function themeChanged ({ detail }: { detail: Theme }) {
+    const elements = Object.entries(detail)
+    for (const e of elements) {
+      if (typeof e[1] === 'string') {
+        document.documentElement.style.setProperty(`--${e[0]}`, `${e[1]}`)
       }
     }
   }
 
-  function modeChanged({ detail }: { detail: Mode }) {
-    game.updateMode(detail);
-    game = game;
-    board = newBoard();
+  function modeChanged ({ detail }: { detail: Mode }) {
+    game.updateMode(detail)
+    game = game
+    board = newBoard()
   }
 </script>
 

@@ -1,17 +1,17 @@
 <script lang="ts">
-  import { createEventDispatcher, onMount } from "svelte";
-  import { themes } from "../logic/theme";
+  import { createEventDispatcher, onMount } from 'svelte'
+  import { themes } from '../logic/theme'
 
-  const dispatch = createEventDispatcher();
-  let selectedTheme = 0;
+  const dispatch = createEventDispatcher()
+  let selectedTheme = 0
 
   onMount(() => {
-    dispatch<"changed">("changed", themes[selectedTheme]);
-  });
+    dispatch<'changed'>('changed', themes[selectedTheme])
+  })
 
-  function changeTheme() {
-    selectedTheme = (selectedTheme + 1) % themes.length;
-    dispatch<"changed">("changed", themes[selectedTheme]);
+  function changeTheme () {
+    selectedTheme = (selectedTheme + 1) % themes.length
+    dispatch<'changed'>('changed', themes[selectedTheme])
   }
 </script>
 

@@ -1,36 +1,36 @@
 <script lang="ts">
-  import { createEventDispatcher } from "svelte";
-  import { Mode } from "../logic/game";
+  import { createEventDispatcher } from 'svelte'
+  import { Mode } from '../logic/game'
 
-  const dispatch = createEventDispatcher();
+  const dispatch = createEventDispatcher()
 
-  function bubble(e: Event) {
-    let value = (e.target as HTMLSelectElement).value;
-    let mode = Mode.EASY;
+  function bubble (e: Event) {
+    const value = (e.target as HTMLSelectElement).value
+    let mode = Mode.EASY
     switch (value) {
-      case "easy":
-        mode = Mode.EASY;
-        break;
-      case "petty":
-        mode = Mode.PETTY;
-        break;
-      case "medium":
-        mode = Mode.MEDIUM;
-        break;
-      case "hard":
-        mode = Mode.HARD;
-        break;
-      case "human":
-        mode = Mode.HUMAN;
-        break;
-      case "online":
-        mode = Mode.ONLINE;
-        break;
+      case 'easy':
+        mode = Mode.EASY
+        break
+      case 'petty':
+        mode = Mode.PETTY
+        break
+      case 'medium':
+        mode = Mode.MEDIUM
+        break
+      case 'hard':
+        mode = Mode.HARD
+        break
+      case 'human':
+        mode = Mode.HUMAN
+        break
+      case 'online':
+        mode = Mode.ONLINE
+        break
       default:
-        mode = Mode.EASY;
-        break;
+        mode = Mode.EASY
+        break
     }
-    dispatch<"change">("change", mode);
+    dispatch<'change'>('change', mode)
   }
 </script>
 

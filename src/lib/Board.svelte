@@ -4,55 +4,55 @@
     getBlanks,
     invertPlayer,
     Outcome,
-    Player,
-  } from "../logic/game";
-  import { createEventDispatcher } from "svelte";
+    Player
+  } from '../logic/game'
+  import { createEventDispatcher } from 'svelte'
 
-  export let board: Field[];
-  export let fieldToString: (arg0: Field) => string;
-  export let player: Player;
-  export let enemy: Player;
+  export let board: Field[]
+  export let fieldToString: (arg0: Field) => string
+  export let player: Player
+  export let enemy: Player
 
-  let currentPlayer: Field = Field.PLAYER1 | Field.PLAYER2;
-  currentPlayer = Field.PLAYER1;
+  let currentPlayer: Field = Field.PLAYER1 | Field.PLAYER2
+  currentPlayer = Field.PLAYER1
 
-  const dispatch = createEventDispatcher();
+  const dispatch = createEventDispatcher()
 
-  function getCurrentPlayer(): Player {
-    if (currentPlayer === player.field) return player;
-    return enemy;
+  function getCurrentPlayer (): Player {
+    if (currentPlayer === player.field) return player
+    return enemy
   }
 
-  function onClickHandler(index: number) {
-    if (!setField(index, getCurrentPlayer().field)) return;
-    currentPlayer = invertPlayer(currentPlayer);
+  function onClickHandler (index: number) {
+    if (!setField(index, getCurrentPlayer().field)) return
+    currentPlayer = invertPlayer(currentPlayer)
     if (!getCurrentPlayer().isHuman()) {
-      setField(getCurrentPlayer().move(board), getCurrentPlayer().field);
-      currentPlayer = invertPlayer(currentPlayer);
+      setField(getCurrentPlayer().move(board), getCurrentPlayer().field)
+      currentPlayer = invertPlayer(currentPlayer)
     }
   }
 
-  function setField(index: number, value: Field): boolean {
-    if (board[index] !== Field.EMPTY) return false;
-    if (new Outcome(board).finished) return false;
-    board[index] = value;
-    board = board;
-    return true;
+  function setField (index: number, value: Field): boolean {
+    if (board[index] !== Field.EMPTY) return false
+    if (new Outcome(board).finished) return false
+    board[index] = value
+    board = board
+    return true
   }
 
   $: {
-    let outcome = new Outcome(board);
+    const outcome = new Outcome(board)
     if (outcome.finished) {
-      dispatch<"finished">("finished", outcome);
+      dispatch<'finished'>('finished', outcome)
     }
   }
 
   $: {
     if (getBlanks(board).length === 9) {
-      currentPlayer = Field.PLAYER1;
+      currentPlayer = Field.PLAYER1
       if (!getCurrentPlayer().isHuman()) {
-        setField(getCurrentPlayer().move(board), getCurrentPlayer().field);
-        currentPlayer = Field.PLAYER2;
+        setField(getCurrentPlayer().move(board), getCurrentPlayer().field)
+        currentPlayer = Field.PLAYER2
       }
     }
   }

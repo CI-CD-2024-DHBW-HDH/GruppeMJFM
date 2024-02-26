@@ -1,14 +1,14 @@
 <script lang="ts">
-  import { createEventDispatcher } from "svelte";
-  import type { Player } from "../logic/game";
+  import { createEventDispatcher } from 'svelte'
+  import type { Player } from '../logic/game'
 
-  export let player: Player;
-  export let enemy: Player;
+  export let player: Player
+  export let enemy: Player
 
-  let dispatch = createEventDispatcher();
+  const dispatch = createEventDispatcher()
 
-  function toggle() {
-    dispatch<"switch">("switch");
+  function toggle () {
+    dispatch<'switch'>('switch')
   }
 </script>
 
