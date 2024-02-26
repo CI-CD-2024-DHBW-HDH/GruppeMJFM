@@ -15,3 +15,6 @@ overrides: [{files: ['*.svelte'], processor: 'svelte3/svelte3'}]
 rules: {
   no-unused-vars: off
   }
+settings: {
+  'svelte3/typescript': true
+}
