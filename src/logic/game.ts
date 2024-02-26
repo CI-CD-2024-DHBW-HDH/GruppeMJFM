@@ -102,7 +102,60 @@ export function isFull(board: Field[]): boolean {
 }
 
 export function won(board: Field[]): Field {
-  return Field.EMPTY
+  //horizontal
+  let player1 = 0;
+  let player2 = 0;
+  board.forEach((val: Field) => {
+    if (player1 == 3 || player2 == 3) {
+      return;
+    }
+    if (val == Field.PLAYER1) {
+      player1++;
+      player2 = 0;
+    } else if (val == Field.PLAYER2) {
+      player2++;
+      player1 = 0;
+    } else {
+      player1 = 0;
+      player2 = 0;
+    }
+  });
+
+  if (player1 == 3) {
+    return Field.PLAYER1;
+  } else if (player2 == 3) {
+    return Field.PLAYER2;
+  }
+
+  //vertical
+  if (board[0] == board[3] && board[3] == board[6] && board[0] != Field.EMPTY) {
+    return board[0];
+  } else if (
+    board[1] == board[4] &&
+    board[4] == board[7] &&
+    board[1] != Field.EMPTY
+  ) {
+    return board[1];
+  } else if (
+    board[2] == board[5] &&
+    board[5] == board[8] &&
+    board[2] != Field.EMPTY
+  ) {
+    return board[2];
+  }
+
+  //diagonal
+  if (board[0] == board[4] && board[4] == board[8] && board[0] != Field.EMPTY) {
+    return board[0];
+  } else if (
+    board[2] == board[4] &&
+    board[4] == board[6] &&
+    board[2] != Field.EMPTY
+  ) {
+    return board[2];
+  }
+
+  return Field.EMPTY;
 }
 
 export function newBoard(): Field[] {
