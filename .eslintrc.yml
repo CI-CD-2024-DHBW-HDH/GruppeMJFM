@@ -8,4 +8,5 @@ parserOptions:
   ecmaVersion: latest
 plugins:
   - '@typescript-eslint'
+  - 'svelte3'
 rules: {}
