@@ -6,7 +6,12 @@ extends:
 parser: '@typescript-eslint/parser'
 parserOptions:
   ecmaVersion: latest
+  extraFileExtensions: ['.svelte']
 plugins:
   - '@typescript-eslint'
   - 'svelte3'
-rules: {no-unused-vars: warn}
+  - 'unused-imports'
+overrides: [{files: ['*.svelte'], processor: 'svelte3/svelte3'}]
+rules: {
+  no-unused-vars: off
+  }
