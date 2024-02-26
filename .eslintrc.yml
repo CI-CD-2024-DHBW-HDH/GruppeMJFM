@@ -9,4 +9,4 @@ parserOptions:
 plugins:
   - '@typescript-eslint'
   - 'svelte3'
-rules: {}
+rules: {no-unused-vars: warn}
