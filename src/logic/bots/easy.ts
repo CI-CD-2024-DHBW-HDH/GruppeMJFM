@@ -15,7 +15,7 @@ export function easyMove(board: Field[], own: Field): number {
     while(!isFree) {
       nextRandomMove = randomMove(9)
 
-      isFree = blankFields.indexOf(nextRandomMove) < 0;
+      isFree = blankFields.indexOf(nextRandomMove) >= 0;
     }
 
     return nextRandomMove;
