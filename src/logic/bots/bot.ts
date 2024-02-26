@@ -81,6 +81,10 @@ export function randomMove(bounds: number): number {
 
 export function randomBlankFieldMove(board: Field[]) {
   const blankFields = getBlanks(board);
+  if(!blankFields.length) {
+    return -1;
+  }
+
   // place random move
 
   let nextRandomMove = -1;
