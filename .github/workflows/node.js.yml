@@ -83,4 +83,4 @@ jobs:
       with: 
         context: "{{defaultContext}}"
         push: true
-        tags: ghcr.io/gruppemjfm/tictactoe:latest
+        tags: ghcr.io/ci-cd-2024-dhbw-hdh/gruppemfjm/tictactoe:latest
