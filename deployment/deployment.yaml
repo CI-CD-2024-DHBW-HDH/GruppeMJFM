@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: tictactoe-deployment
+  labels:
+    app: tictactoe
+spec:
+  selector:
+    matchLabels:
+      app: tictactoe
+  replicas: 3
+  template:
+    metadata:
+      labels:
+        app: tictactoe
+    spec:
+      containers:
+      - name: tictactoe
+        image: ghcr.io/ci-cd-2024-dhbw-hdh/gruppemfjm/tictactoe:latest
+        ports:
+        - containerPort: 80
+      imagePullSecrets:
+      - name: regcred
