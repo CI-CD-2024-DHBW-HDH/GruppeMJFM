@@ -83,4 +83,4 @@ jobs:
       with: 
         context: "{{defaultContext}}"
         push: true
-        tags: ghcr.io/${{ github.repository_owner }}/tictactoe:latest
+        tags: ghcr.io/gruppemjfm/tictactoe:latest
