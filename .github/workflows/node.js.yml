@@ -10,6 +10,7 @@ permissions:
   contents: write
   pages: write
   id-token: write
+  packages: write
 
 concurrency:
   group: github-pages
@@ -71,3 +72,9 @@ jobs:
     - name: Deploy to GitHub Pages
       id: deployment
       uses: actions/deploy-pages@v4
+    - name: Build and push
+      uses: docker/build-push-action@v5
+      with: 
+        context: "{{defaultContext}}"
+        push: true
+        tags: gruppemjfm/tictactoe:latest
